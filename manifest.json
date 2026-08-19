@@ -1,0 +1,10 @@
+{
+  "id": "stockr-sync",
+  "name": "Stockr Sync",
+  "version": "0.1.0",
+  "minAppVersion": "1.5.0",
+  "description": "Send insights from your notes to Stockr, a reflective journaling app, and pull your recent reflections into daily notes.",
+  "author": "株式会社ビルディット",
+  "authorUrl": "https://mcp.stockr.biz",
+  "isDesktopOnly": true
+}

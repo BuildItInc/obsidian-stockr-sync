@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# build output（GitHub Releasesに添付する成果物。リポジトリにはコミットしない）
+main.js
+*.js.map
+
+# プラグイン設定（実vaultでのQA時に生成される。OAuthトークンを含むため絶対にコミットしない）
+data.json
+
+# env / secrets
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# logs
+npm-debug.log*
+*.log

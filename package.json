@@ -1,0 +1,16 @@
+{
+  "name": "stockr-sync",
+  "version": "0.1.0",
+  "description": "Obsidian plugin: sync insights with Stockr",
+  "main": "main.js",
+  "scripts": {
+    "build": "tsc --noEmit && esbuild src/main.ts --bundle --external:obsidian --external:electron --format=cjs --target=es2020 --platform=node --outfile=main.js",
+    "dev": "esbuild src/main.ts --bundle --external:obsidian --external:electron --format=cjs --target=es2020 --platform=node --outfile=main.js --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.23.0",
+    "obsidian": "latest",
+    "typescript": "^5.5.0",
+    "@types/node": "^20.0.0"
+  }
+}
