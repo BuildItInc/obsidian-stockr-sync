@@ -112,10 +112,15 @@ export default class StockrSyncPlugin extends Plugin {
   private renderStocks(stocks: Stock[]): string {
     const lines = [this.settings.importHeading, ""];
     for (const s of stocks) {
-      const [first = "", ...rest] = s.text.split("\n");
-      lines.push(`- ${first} *(${shortDate(s.createdAt)})*`);
-      for (const cont of rest) {
-        if (cont.trim()) lines.push(`  ${cont}`);
+      const stamp = ` *(${shortDate(s.createdAt)})*`;
+      const [first = "", ...rest] = s.text.split("\n").filter((l, i) => i === 0 || l.trim());
+      if (rest.length === 0) {
+        lines.push(`- ${first}${stamp}`);
+      } else {
+        lines.push(`- ${first}`);
+        rest.forEach((cont, i) => {
+          lines.push(`  ${cont}${i === rest.length - 1 ? stamp : ""}`);
+        });
       }
     }
     lines.push("");
