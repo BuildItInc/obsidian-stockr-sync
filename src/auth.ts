@@ -62,7 +62,7 @@ export async function authorize(openExternal: (url: string) => void): Promise<St
     const clientId = await registerClient(redirectUri);
 
     const code = await new Promise<string>((resolve, reject) => {
-      const timeout = setTimeout(() => reject(new Error("Authorization timed out (5 min)")), 5 * 60 * 1000);
+      const timeout = window.setTimeout(() => reject(new Error("Authorization timed out (5 min)")), 5 * 60 * 1000);
       server.on("request", (req, res) => {
         const url = new URL(req.url ?? "/", redirectUri);
         if (url.pathname !== "/callback") {
@@ -75,12 +75,12 @@ export async function authorize(openExternal: (url: string) => void): Promise<St
         res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
         if (err || gotState !== state || !gotCode) {
           res.end("<h3>認証に失敗しました。Obsidianに戻ってやり直してください。</h3>");
-          clearTimeout(timeout);
+          window.clearTimeout(timeout);
           reject(new Error(err ?? "state mismatch"));
           return;
         }
         res.end("<h3>Stockrと接続しました。このタブを閉じてObsidianに戻ってください。</h3>");
-        clearTimeout(timeout);
+        window.clearTimeout(timeout);
         resolve(gotCode);
       });
 
